@@ -23,7 +23,7 @@ class PacketModel(Model):
         output = tf.reshape(d2_out_clip,(-1,timesteps,num_input))
         return output
 
-def get_files(day,prefix = '../data/packet_based/'):
+def get_files(day,prefix = '../data/extracted_packet_based/'):
     all_files = []
     prefix = prefix+day
     for file in os.listdir(prefix):
