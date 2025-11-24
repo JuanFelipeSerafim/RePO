@@ -35,7 +35,7 @@ class FlowModel(Model):
         return x
     
 def get_train_ds():
-    url_data = '../data/flow_based/Monday-WH-generate-labeled.csv'
+    url_data = '../data/extracted_flow_based/Monday-WH-generate-labeled.csv'
     df = pd.read_csv(url_data)
     feats = df.iloc[:,8:]
     ds_port = df.iloc[:,5]
