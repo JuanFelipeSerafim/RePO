@@ -10,13 +10,13 @@ from tensorflow.keras import Model
 import pandas as pd
 
 def get_test_set():
-    test_files = ['../data/extracted_flow_based/Tuesday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Wednesday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Thursday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Friday-WH-generate-labeled.csv']
+    test_files = ['../../data/extracted_flow_based/Tuesday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Wednesday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Thursday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Friday-WH-generate-labeled.csv']
     
-    train_min = np.load('../data/flow_based/x_train_meta/train_min.npy')
-    train_max = np.load('../data/flow_based/x_train_meta/train_max.npy')
+    train_min = np.load('../../data/flow_based/x_train_meta/train_min.npy')
+    train_max = np.load('../../data/flow_based/x_train_meta/train_max.npy')
     print(f'Valor minimo treino:{train_min}\nValor maximo treino{train_max}')
     print(f'Tamanho minimo treino:{len(train_min)}\nTamanho maximo treino{len(train_max)}')
     x_test_all = []
@@ -81,7 +81,7 @@ def test_step(x):
 
 
 if __name__ == "__main__":
-    model = tf.keras.models.load_model('../models/flow_based_model/')
+    model = tf.keras.models.load_model('../../models/flow_based_model/')
 
     x_test, y_test = get_test_set()
     num_input = x_test.shape[1]

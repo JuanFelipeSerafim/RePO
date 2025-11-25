@@ -8,7 +8,7 @@ import time
 from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Model
 
-def get_files(day,prefix = '../data/packet_based/'):
+def get_files(day,prefix = '../../data/packet_based/'):
     all_files = []
     prefix = prefix+day
     for file in os.listdir(prefix):
@@ -18,8 +18,8 @@ def get_files(day,prefix = '../data/packet_based/'):
     return all_files
 
 def get_test_set(day):
-    train_min = np.load('../data/packet_based/x_train_meta/train_min.npy')
-    train_max = np.load('../data/packet_based/x_train_meta/train_max.npy')
+    train_min = np.load('../../data/packet_based/x_train_meta/train_min.npy')
+    train_max = np.load('../../data/packet_based/x_train_meta/train_max.npy')
     
     all_files = get_files(day)
     x_test = []
@@ -28,7 +28,7 @@ def get_test_set(day):
         x_test.append(np.load(f))
     x_test = np.concatenate(x_test,axis=0)
 
-    yt = np.load('../data/packet_based/'+day+'/labels.npy')
+    yt = np.load('../../data/packet_based/'+day+'/labels.npy')
     y_test = yt
     return x_test,y_test,train_min,train_max
 

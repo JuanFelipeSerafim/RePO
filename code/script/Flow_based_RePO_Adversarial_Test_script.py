@@ -10,13 +10,13 @@ from tensorflow.keras import Model
 import pandas as pd
 
 def get_test_set():
-    test_files = ['../data/extracted_flow_based/Tuesday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Wednesday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Thursday-WH-generate-labeled.csv',
-                '../data/extracted_flow_based/Friday-WH-generate-labeled.csv']
+    test_files = ['../../data/extracted_flow_based/Tuesday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Wednesday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Thursday-WH-generate-labeled.csv',
+                '../../data/extracted_flow_based/Friday-WH-generate-labeled.csv']
     
-    train_min = np.load('../data/flow_based/x_train_meta/train_min.npy') #tem q manter. ma dá pra extrair na etapa de treino tbm!
-    train_max = np.load('../data/flow_based/x_train_meta/train_max.npy')
+    train_min = np.load('../../data/flow_based/x_train_meta/train_min.npy') #tem q manter. ma dá pra extrair na etapa de treino tbm!
+    train_max = np.load('../../data/flow_based/x_train_meta/train_max.npy')
     
     x_test_all = []
     y_test_all = []
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     ### as described in "Towards Evaluation of NIDSs in Adversarial Setting"
     thr = 0.016235964372754097*0.8
 
-    model = tf.keras.models.load_model('../models/flow_based_model/')
+    model = tf.keras.models.load_model('../../models/flow_based_model/')
 
     x_test, y_test, train_min, train_max, decimal_features = get_test_set()
     num_input = x_test.shape[1]

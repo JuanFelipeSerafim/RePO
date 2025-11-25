@@ -8,7 +8,7 @@ import time
 from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Model
 
-def get_files(day,prefix = '../data/packet_based/'):
+def get_files(day,prefix = '../../data/packet_based/'):
     all_files = []
     prefix = prefix+day
     for file in os.listdir(prefix):
@@ -22,7 +22,7 @@ def get_labels(timesteps=20):
     # We move the window 20 steps forward at each time.
     Y_test = []
     for day in ['tuesday','wednesday','thursday','friday']:
-        temp = np.load('../data/packet_based/'+day+'/labels.npy')
+        temp = np.load('../../data/packet_based/'+day+'/labels.npy')
         Y_test.append(temp)
     Ys = []
     for yt in Y_test:
@@ -116,13 +116,13 @@ def load_and_predict_with_repo_plus(day):
 if __name__ == "__main__":
     label_names = ['Benign','FTP-Patator','SSH-Patator','Slowloris','Slowhttptest','Hulk','GoldenEye','Heartbleed', 'Web-Attack', 'Infiltration','Botnet','PortScan','DDoS']
 
-    train_min = np.load('../data/packet_based/x_train_meta/train_min.npy')
-    train_max = np.load('../data/packet_based/x_train_meta/train_max.npy')
+    train_min = np.load('../../data/packet_based/x_train_meta/train_min.npy')
+    train_max = np.load('../../data/packet_based/x_train_meta/train_max.npy')
 
     timesteps = 20
     num_input = 29
 
-    model = tf.keras.models.load_model('../models/pkt_model/')
+    model = tf.keras.models.load_model('../../models/pkt_model/')
 
     all_labels = get_labels()
 
