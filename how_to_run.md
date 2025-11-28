@@ -20,7 +20,7 @@ exec $SHELL
 3. Crie seu ambiente virtual, **especificando as versões do Python e versões de outros pacotes necessários
 
 ```
-conda create --name nome_ambiente_virtual_alterável python=3.7.7 pandas=1.0.3 numpy=1.18.1 tensorflow=2.1.0 protobuf=3.20.3
+conda create --name nome_ambiente_virtual_alterável python=3.7.7 pandas=1.0.3 numpy=1.18.1 tensorflow=2.1.0 protobuf=3.20.3 tensorflow-estimator=2.1.0 scipy=1.4.1 tensorboard=2.1.0
 ```
 
 
