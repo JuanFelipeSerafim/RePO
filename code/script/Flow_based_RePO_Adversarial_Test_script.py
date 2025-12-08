@@ -177,7 +177,8 @@ def find_adv(source_index):
 
 
 if __name__ == "__main__":
-
+    tempoInicial=time.time()
+    print(f"INICIO TESTE RePO FLOW BASED ADVERSARIAL\n{time.strftime('%d-%m-%Y %H:%M:%S', time.localtime())}\n")
     ### At this threshold the FPR of the model we trained is 0.1
     real_thr = 0.016235964372754097 
     ### We consider a threshold lower than the real threshold of the model to compensate the impact of group 4 features
@@ -195,7 +196,7 @@ if __name__ == "__main__":
     attack_type = 'DoS Slowhttptest'
 
     x_test_mal = x_test[y_test==attack_type]
-    print (x_test_mal.shape)
+    print (f'x_test->{attack_type}:{x_test_mal.shape}')
     x_test_mal = x_test_mal[:5000].astype(np.float32)
     score_np = np.zeros(len(x_test_mal))
     begin_time = time.time()
@@ -205,7 +206,7 @@ if __name__ == "__main__":
         sample = x_test_mal[i][None]
         score_temp = test_step(sample)
         score_np[i] = score_temp.numpy()
-    print (i,time.time() - begin_time)
+    print (i,time.time() - begin_time,'seg')
 
     print ("TPR in normal setting for "+attack_type+" is {0:0.4f}".format(np.sum(score_np>=real_thr)/len(score_np)))
 
@@ -330,3 +331,4 @@ if __name__ == "__main__":
     print (i,time.time() - begin_time)
     mal_scores = score_np2
     print ("TPR of the victim's NIDS: {0:0.4f}".format(np.sum(mal_scores>=thr)/(0. + len(mal_scores))))
+    print(f"FIM TESTE RePO FLOW BASED ADVERSARIAL\nTempo decorrido:{(time.time()-tempoInicial)}seg")

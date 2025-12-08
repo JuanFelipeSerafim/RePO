@@ -81,20 +81,23 @@ def test_step(x):
 
 
 if __name__ == "__main__":
+    tempoInicial=time.time()
+    print(f"INICIO TESTE RePO FLOW BASED NORMAL\n{time.strftime('%d-%m-%Y %H:%M:%S', time.localtime())}\n")
     model = tf.keras.models.load_model('../../models/flow_based_model/')
 
     x_test, y_test = get_test_set()
     num_input = x_test.shape[1]
-
+    print(f'x_test:{x_test.shape}\ny_test:{y_test.shape}\n')
     label_names = ['BENIGN','FTP-Patator','SSH-Patator','DoS slowloris','DoS Slowhttptest','DoS Hulk','DoS GoldenEye','Heartbleed','Web Attack','Infiltration', 'Bot', 'PortScan', 'DDoS']
     all_scores = get_scores(x_test)
-
+    print(f'scores independente do fpr\n{all_scores}')
     fpr = 0.01
     benign_scores = all_scores[y_test=='BENIGN']
+    print(f'scores com fpr==0.01\n{benign_scores}')
     benign_scores_sorted = np.sort(benign_scores)
     thr_ind = int(np.ceil(len(benign_scores_sorted)*0.01))
     thr = benign_scores_sorted[-thr_ind]
-    print (thr)
+    print (f'threshold atual->{thr}\n')
 
     for i in range(len(label_names)):
     #### Exclude web attacks from results
@@ -107,5 +110,5 @@ if __name__ == "__main__":
         else:
             tpr = "{0:0.4f}".format(np.sum(scores>=thr)/(0. + len(scores)))
             print(label_names[i]+':',tpr)
-    
+    print(f"FIM TESTE RePO FLOW BASED NORMAL\nTempo decorrido:{(time.time()-tempoInicial)}seg")
 

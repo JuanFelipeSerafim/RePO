@@ -8,7 +8,7 @@ import time
 from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Model
 
-def get_files(day,prefix = '../../data/packet_based/'):
+def get_files(day,prefix = '../../data/extracted_packet_based/'):
     all_files = []
     prefix = prefix+day
     for file in os.listdir(prefix):
@@ -28,7 +28,7 @@ def get_test_set(day):
         x_test.append(np.load(f))
     x_test = np.concatenate(x_test,axis=0)
 
-    yt = np.load('../../data/packet_based/'+day+'/labels.npy')
+    yt = np.load('../../data/extracted_packet_based/'+day+'/labels.npy')
     y_test = yt
     return x_test,y_test,train_min,train_max
 
@@ -190,6 +190,9 @@ def inject(x,mask_type = 'tcp'):
 
 
 if __name__ == "__main__":
+    print("COMECOU!!")
+    tempoInicial=time.time()
+    print(f"INICIO TESTE RePO PACKET BASED ADVERSARIAL\n{time.strftime('%d-%m-%Y %H:%M:%S', time.localtime())}\n")
     ### At this threshold the FPR of the model we trained is 0.1
     thr = 0.08106673508882523 
 
@@ -218,7 +221,7 @@ if __name__ == "__main__":
     num_input = x_test.shape[1]
     print(x_test.shape,y_test.shape)
 
-    model = tf.keras.models.load_model('../models/pkt_model/')
+    model = tf.keras.models.load_model('../../models/packet_based_model/')
 
     attack_label = attack_to_label[attack_type]
     x_test_mal = x_test[y_test==attack_label]
@@ -262,6 +265,9 @@ if __name__ == "__main__":
     for i in range(timesteps-1):
         stream.append(x_test_mal[i])
         stream_status.append(None)
+
+    print(f'Tamanho da lista stream: {len(stream)}\nConteudo de stream: {stream}\n')
+    
     for i in range(timesteps-1,len(x_test_mal)):
         if i%100==0:
             print ('#',i,(time.time() - begin_time)/60.,cons_as_mal,cons_as_ben,fooled)
@@ -289,3 +295,4 @@ if __name__ == "__main__":
     print ('duration:',time.time() - begin_time)
 
     print ("TPR in adversarial setting for "+attack_type+" is {0:0.4f}".format(cons_as_mal/len(x_test_mal)))
+    print(f"FIM TESTE RePO PACKET BASED ADVERSARIAL\nTempo decorrido:{(time.time()-tempoInicial)}seg")
