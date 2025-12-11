@@ -1,0 +1,40 @@
+Monday-WH-generate-labeled.csv
+Label
+BENIGN    529918
+Name: count, dtype: int64 
+
+Tuesday-WH-generate-labeled.csv
+Label
+BENIGN         432073
+FTP-Patator      7938
+SSH-Patator      5897
+Name: count, dtype: int64 
+
+Thursday-WH-generate-labeled.csv
+Label
+BENIGN                        456752
+Web Attack - Brute Force        1507
+Web Attack - XSS                 651
+Infiltration                      36
+Web Attack - Sql Injection        21
+Name: count, dtype: int64 
+
+Wednesday-WH-generate-labeled.csv
+Label
+BENIGN              440031
+DoS Hulk            231073
+DoS GoldenEye        10293
+DoS slowloris         5796
+DoS Slowhttptest      5499
+Heartbleed              11
+Name: count, dtype: int64 
+
+Friday-WH-generate-labeled.csv
+Label
+BENIGN      414287
+PortScan    158965
+DDoS        128027
+Bot           1966
+ Label           2
+Name: count, dtype: int64 
+
