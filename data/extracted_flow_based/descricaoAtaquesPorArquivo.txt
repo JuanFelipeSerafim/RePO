@@ -13,10 +13,10 @@ Name: count, dtype: int64
 Thursday-WH-generate-labeled.csv
 Label
 BENIGN                        456752
-Web Attack - Brute Force        1507
-Web Attack - XSS                 651
+Web Attack - Brute Force        1507 #NAO VAI
+Web Attack - XSS                 651 #NAO VAI
 Infiltration                      36
-Web Attack - Sql Injection        21
+Web Attack - Sql Injection        21 #NAO VAI
 Name: count, dtype: int64 
 
 Wednesday-WH-generate-labeled.csv
